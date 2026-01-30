@@ -1,7 +1,14 @@
-import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-const ProtectedRoute = () => {
-  return <div>ProtectedRoute</div>;
-};
+export default function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
 
-export default ProtectedRoute;
+  if (loading) {
+    return <div className="text-slate-300">Loading...</div>;
+  }
+
+  if (!user) return <Navigate to="/login" replace />;
+
+  return children;
+}
