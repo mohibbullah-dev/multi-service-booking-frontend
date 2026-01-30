@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import { getMyBookings } from "../api/bookings";
+import { getMyBookings, cancelBooking } from "../api/bookings";
+
 import { Link } from "react-router-dom";
 
 function formatDateTime(iso) {
@@ -24,6 +25,17 @@ export default function MyBookings() {
       setErr(e?.response?.data?.message || "Failed to load bookings");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function onCancel(id) {
+    try {
+      const updated = await cancelBooking(id);
+      setBookings((prev) =>
+        prev.map((b) => (b._id === updated._id ? updated : b)),
+      );
+    } catch (e) {
+      setErr(e?.response?.data?.message || "Failed to cancel booking");
     }
   }
 
@@ -90,6 +102,18 @@ export default function MyBookings() {
                   <Button variant="ghost">View service</Button>
                 </Link>
               ) : null}
+
+              {b.status !== "cancelled" ? (
+                <Button
+                  variant="ghost"
+                  onClick={() => onCancel(b._id)}
+                  className="border-red-500/40 hover:border-red-400 hover:text-red-300"
+                >
+                  Cancel booking
+                </Button>
+              ) : (
+                <p className="text-sm text-slate-400">Cancelled</p>
+              )}
             </Card>
           ))}
         </div>
