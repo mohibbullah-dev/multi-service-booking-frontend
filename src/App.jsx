@@ -30,6 +30,14 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/booking/:serviceId"
+          element={
+            <ProtectedRoute>
+              <Booking />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />

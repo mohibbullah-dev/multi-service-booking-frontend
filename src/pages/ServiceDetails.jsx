@@ -61,7 +61,7 @@ export default function ServiceDetails() {
         </Link>
 
         {/* Next step later: route to booking with this service */}
-        <Link to="/booking">
+        <Link to={`/booking/${service._id}`}>
           <Button>Book this service</Button>
         </Link>
       </div>
