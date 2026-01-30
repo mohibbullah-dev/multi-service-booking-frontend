@@ -9,3 +9,8 @@ export async function getMyBookings() {
   const { data } = await api.get("/api/bookings/my");
   return data.bookings;
 }
+
+export async function cancelBooking(id) {
+  const { data } = await api.patch(`/api/bookings/${id}/cancel`);
+  return data.booking;
+}
