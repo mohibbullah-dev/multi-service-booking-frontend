@@ -6,6 +6,7 @@ import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import ServiceDetails from "./pages/ServiceDetails";
+import MyBookings from "./pages/MyBookings";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -35,6 +36,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Booking />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-bookings"
+          element={
+            <ProtectedRoute>
+              <MyBookings />
             </ProtectedRoute>
           }
         />
