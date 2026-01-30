@@ -1,14 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: dark;
-
-  /* Theme tokens */
+@theme {
   --color-primary: #6366f1;
   --color-background: #0f172a;
 }
 
-/* Optional: global body styling */
-body {
-  background: var(--color-background);
+@layer base {
+  body {
+    @apply bg-background text-slate-100;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-primary text-white rounded-lg font-semibold
+           hover:opacity-90 transition-all;
+  }
+
+  .card {
+    @apply bg-slate-900 rounded-xl p-6 border border-slate-800
+           hover:border-primary transition-all;
+  }
 }
