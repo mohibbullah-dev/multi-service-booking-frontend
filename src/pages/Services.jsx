@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { getServices, createService, deleteService } from "../api/services";
+import { Link } from "react-router-dom";
 
 export default function Services() {
   const [services, setServices] = useState([]);
@@ -146,7 +147,10 @@ export default function Services() {
           {services.map((s) => (
             <Card key={s._id} className="space-y-3">
               <div>
-                <h3 className="text-lg font-semibold">{s.title}</h3>
+                <Link to={`/services/${s._id}`} className="hover:underline">
+                  <h3 className="text-lg font-semibold">{s.title}</h3>
+                </Link>
+
                 <p className="text-slate-300">
                   {s.durationMins} mins • ${s.price}
                 </p>

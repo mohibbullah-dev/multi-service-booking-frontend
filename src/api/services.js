@@ -13,3 +13,8 @@ export async function createService(payload) {
 export async function deleteService(id) {
   await api.delete(`/api/services/${id}`);
 }
+
+export async function getService(id) {
+  const { data } = await api.get(`/api/services/${id}`);
+  return data.service;
+}

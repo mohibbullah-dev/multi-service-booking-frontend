@@ -5,6 +5,7 @@ import Services from "./pages/Services";
 import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+import ServiceDetails from "./pages/ServiceDetails";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/services/:id" element={<ServiceDetails />} />
 
         <Route
           path="/booking"
